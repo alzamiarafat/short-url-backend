@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  # node Service
+  short-url-api:
+    build:
+      context: .
+    ports:
+      - 5001:5002
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017

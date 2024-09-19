@@ -13,7 +13,7 @@ const UrlService = {
         const data = {
             original_url,
             url_code: uniqueCode,
-            short_url: `${req.headers.host}/api/url/${uniqueCode}`
+            short_url: `${req.headers.host}/${uniqueCode}`
         }
         return await UrlRepository.store(data);
     },
