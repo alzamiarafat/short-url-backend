@@ -1,9 +1,14 @@
 'use strict';
 const UrlService = require('../services/UrlService');
+const validUrl = require('valid-url'); // For URL validation
 
 const UrlController = {
     generator: async (req, res, next) => {
         try {
+            // Check if the URL is valid
+            if (!validUrl.isUri(req.body.original_url)) {
+                return res.status(400).json({ error: 'Invalid URL' });
+            }
             const shortUrl = await UrlService.generator(req);
             res.json(shortUrl);
         } catch (error) {
