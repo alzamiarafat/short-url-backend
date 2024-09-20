@@ -10,6 +10,8 @@ const UrlService = {
         let encoded = CommonService.encodeBase62(hashNumber);
 
         const uniqueCode = CommonService.generateUniqueCodeForUrl(encoded);
+        const url = await UrlRepository.getByCode(uniqueCode);
+        if (url) return url;
         const data = {
             original_url,
             url_code: uniqueCode,
